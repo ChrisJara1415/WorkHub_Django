@@ -1,5 +1,4 @@
 /* Header */
-
 header {
     height: 70px;
     box-shadow: 0 3px 10px rgb(0, 0, 0, 0.5);
@@ -14,6 +13,7 @@ header {
 .navbar {
     padding-inline: clamp(0.8rem, 2vw, 2rem);
     gap: 1.2rem;
+    width: 100vh;
 }
 
 .navbar-collapse {
