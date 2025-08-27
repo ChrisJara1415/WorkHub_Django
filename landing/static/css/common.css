@@ -1,19 +1,19 @@
 /* Fuentes */
 @font-face {
     font-family: afacad;
-    src: url(/assets/fonts/Afacad-VariableFont_wght.woff2) format("woff2");
+    src: url("../fonts/Afacad-VariableFont_wght.woff2") format("woff2");
     font-weight: 100 900;
 }
 
 @font-face {
     font-family: publicSans;
-    src: url(/assets/fonts/PublicSans-VariableFont_wght.woff2) format("woff2");
+    src: url('../fonts/PublicSans-VariableFont_wght.woff2') format("woff2");
     font-weight: 100 900;
 }
 
 @font-face {
     font-family: rubik;
-    src: url(/assets/fonts/Rubik-VariableFont_wght.woff2) format("woff2");
+    src: url('../fonts/Rubik-VariableFont_wght.woff2') format("woff2");
     font-weight: 100 900;
 }
 
@@ -150,13 +150,13 @@
 }
 
 .bk-gr-triangle-blank {
-    background-image: url(/assets/img/backgrounds/headingBackg.svg), linear-gradient(180deg, rgba(255, 170, 95, 0.05) 5.18%, rgba(34, 113, 131, 0.19) 69.94%);
+    background-image: url('../img/backgrounds/headingBackg.svg'), linear-gradient(180deg, rgba(255, 170, 95, 0.05) 5.18%, rgba(34, 113, 131, 0.19) 69.94%);
     background-size: cover;
     background-position: center;
 }
 
 .bk-gr-triangle-blue {
-    background-image: url(/assets/img/backgrounds/headingBackg.svg), linear-gradient(279deg, #58cce6 0%, #013b48 100%);
+    background-image: url('../img/backgrounds/headingBackg.svg'), linear-gradient(279deg, #58cce6 0%, #013b48 100%);
     background-size: cover;
     background-position: center;
 }
