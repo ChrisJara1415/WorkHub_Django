@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Landing - WorkHub{% endblock %}
 
@@ -13,13 +14,13 @@
   <div class="container-fluid">
     <form class="mySearch d-flex m-auto gap-2 col-11 col-md-7" role="search">
       <svg id="icon-brief" width="18" heigth="18" viewBox="0 0 16 16">
-        <use href="./assets/svg/iconos.svg#icon-briefcase"> </use>
+        <use href="{% static '/svg/iconos.svg#icon-briefcase' %}"> </use>
       </svg>
       <input class="form-control bk-blankest " type="text" name="search" placeholder="Buscar cargo o categoría"
         aria-label="Search">
       <button class="btn btn-cta d-inline-flex gap-2 align-items-center" type="submit"><span><svg width="16" heigth="16"
             viewBox="0 0 16 16">
-            <use href="./assets/svg/iconos.svg#icon-search"> </use>
+            <use href="{% static '/svg/iconos.svg#icon-search' %}"> </use>
           </svg> </span>
         <span>Buscar</span></button>
     </form>
@@ -34,49 +35,49 @@
   <div class="splide__track container-jobs-carrousel bk-blankest p-5 position-relative">
     <ul class="splide__list">
       <li class="splide__slide rounded-4 bk-dark">
-        <img class="rounded-4 opacity-50 object-fit-cover " src="./assets/img/oficios/jardineria.svg" alt="">
+        <img class="rounded-4 opacity-50 object-fit-cover " src="{% static '/img/oficios/jardineria.svg' %}" alt="">
         <div class="text-sup rounded-bottom-4">
           <p class="mb-0 ">Embellece tu jardín</p>
           <h4 class="mb-0 ">Jardinero</h4>
         </div>
       </li>
       <li class="splide__slide rounded-4 bk-dark">
-        <img class="rounded-4 opacity-50 object-fit-cover " src="./assets/img/oficios/arreglos.svg" alt="">
+        <img class="rounded-4 opacity-50 object-fit-cover " src="{% static '/img/oficios/arreglos.svg' %}" alt="">
         <div class="text-sup rounded-bottom-4">
           <p class="mb-0 ">Embellece tu jardín</p>
           <h4 class="mb-0 ">Jardinero</h4>
         </div>
       </li>
       <li class="splide__slide rounded-4 bk-dark">
-        <img class="rounded-4 opacity-50 object-fit-cover " src="./assets/img/oficios/limpieza.svg" alt="">
+        <img class="rounded-4 opacity-50 object-fit-cover " src="{% static '/img/oficios/limpieza.svg' %}" alt="">
         <div class="text-sup rounded-bottom-4">
           <p class="mb-0 ">Deja reluciente tu espacio</p>
           <h4 class="mb-0 ">Limpieza</h4>
         </div>
       </li>
       <li class="splide__slide rounded-4 bk-dark">
-        <img class="rounded-4 opacity-50 object-fit-cover " src="./assets/img/oficios/piscinero.svg" alt="">
+        <img class="rounded-4 opacity-50 object-fit-cover " src="{% static '/img/oficios/piscinero.svg' %}" alt="">
         <div class="text-sup rounded-bottom-4">
           <p class="mb-0 ">Embellece tu jardín</p>
           <h4 class="mb-0 ">Piscinero</h4>
         </div>
       </li>
       <li class="splide__slide rounded-4 bk-dark">
-        <img class="rounded-4 opacity-50 object-fit-cover " src="./assets/img/oficios/carpinteria.svg" alt="">
+        <img class="rounded-4 opacity-50 object-fit-cover " src="{% static '/img/oficios/carpinteria.svg' %}" alt="">
         <div class="text-sup rounded-bottom-4">
           <p class="mb-0 ">Arregla y diseña muebles</p>
           <h4 class="mb-0 ">Carpinteria</h4>
         </div>
       </li>
       <li class="splide__slide rounded-4 bk-dark">
-        <img class="rounded-4 opacity-50 object-fit-cover " src="./assets/img/oficios/cargue-y-descargue.svg" alt="">
+        <img class="rounded-4 opacity-50 object-fit-cover " src="{% static '/img/oficios/cargue-y-descargue.svg' %}" alt="">
         <div class="text-sup rounded-bottom-4">
           <p class="mb-0 ">Embellece tu jardín</p>
           <h4 class="mb-0 ">Jardinero</h4>
         </div>
       </li>
       <li class="splide__slide rounded-4 bk-dark">
-        <img class="rounded-4 opacity-50 object-fit-cover " src="./assets/img/oficios/pintura.svg" alt="">
+        <img class="rounded-4 opacity-50 object-fit-cover " src="{% static '/img/oficios/pintura.svg' %}" alt="">
         <div class="text-sup rounded-bottom-4">
           <p class="mb-0 ">Embellece tu jardín</p>
           <h4 class="mb-0 ">Jardinero</h4>
