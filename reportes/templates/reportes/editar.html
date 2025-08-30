@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Editar {{ reporte.titulo }} - Panel de Administración{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="fas fa-chart-bar me-2"></i>Editar Reporte</h2>
+                <a href="{% url 'reportes:detalle' reporte.id %}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>Volver
+                </a>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="mb-3">
+                                    <label for="{{ form.titulo.id_for_label }}" class="form-label">Título del Reporte</label>
+                                    {{ form.titulo }}
+                                    {% if form.titulo.errors %}
+                                        <div class="text-danger">{{ form.titulo.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="{{ form.tipo.id_for_label }}" class="form-label">Tipo de Reporte</label>
+                                    {{ form.tipo }}
+                                    {% if form.tipo.errors %}
+                                        <div class="text-danger">{{ form.tipo.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.descripcion.id_for_label }}" class="form-label">Descripción</label>
+                            {{ form.descripcion }}
+                            {% if form.descripcion.errors %}
+                                <div class="text-danger">{{ form.descripcion.errors }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="{{ form.fecha_inicio.id_for_label }}" class="form-label">Fecha de Inicio</label>
+                                    {{ form.fecha_inicio }}
+                                    {% if form.fecha_inicio.errors %}
+                                        <div class="text-danger">{{ form.fecha_inicio.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="{{ form.fecha_fin.id_for_label }}" class="form-label">Fecha de Fin</label>
+                                    {{ form.fecha_fin }}
+                                    {% if form.fecha_fin.errors %}
+                                        <div class="text-danger">{{ form.fecha_fin.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="{{ form.creado_por.id_for_label }}" class="form-label">Creado por</label>
+                                    {{ form.creado_por }}
+                                    {% if form.creado_por.errors %}
+                                        <div class="text-danger">{{ form.creado_por.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="{{ form.estado.id_for_label }}" class="form-label">Estado</label>
+                                    {{ form.estado }}
+                                    {% if form.estado.errors %}
+                                        <div class="text-danger">{{ form.estado.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.datos.id_for_label }}" class="form-label">Datos del Reporte (JSON)</label>
+                            {{ form.datos }}
+                            {% if form.datos.errors %}
+                                <div class="text-danger">{{ form.datos.errors }}</div>
+                            {% endif %}
+                            <div class="form-text">Ingrese los datos en formato JSON válido</div>
+                        </div>
+
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary me-2">
+                                <i class="fas fa-save me-2"></i>Actualizar Reporte
+                            </button>
+                            <a href="{% url 'reportes:detalle' reporte.id %}" class="btn btn-secondary">Cancelar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

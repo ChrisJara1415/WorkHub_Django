@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Editar Postulación #{{ postulacion.id }} - Panel de Administración{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="fas fa-file-edit me-2"></i>Editar Postulación</h2>
+                <a href="{% url 'postulaciones:detalle' postulacion.id %}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>Volver
+                </a>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="{{ form.usuario.id_for_label }}" class="form-label">Usuario</label>
+                                    {{ form.usuario }}
+                                    {% if form.usuario.errors %}
+                                        <div class="text-danger">{{ form.usuario.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="{{ form.oferta.id_for_label }}" class="form-label">Oferta</label>
+                                    {{ form.oferta }}
+                                    {% if form.oferta.errors %}
+                                        <div class="text-danger">{{ form.oferta.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.carta_presentacion.id_for_label }}" class="form-label">Carta de Presentación</label>
+                            {{ form.carta_presentacion }}
+                            {% if form.carta_presentacion.errors %}
+                                <div class="text-danger">{{ form.carta_presentacion.errors }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="{{ form.estado.id_for_label }}" class="form-label">Estado</label>
+                                    {{ form.estado }}
+                                    {% if form.estado.errors %}
+                                        <div class="text-danger">{{ form.estado.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="{{ form.salario_esperado.id_for_label }}" class="form-label">Salario Esperado</label>
+                                    {{ form.salario_esperado }}
+                                    {% if form.salario_esperado.errors %}
+                                        <div class="text-danger">{{ form.salario_esperado.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.notas.id_for_label }}" class="form-label">Notas Adicionales</label>
+                            {{ form.notas }}
+                            {% if form.notas.errors %}
+                                <div class="text-danger">{{ form.notas.errors }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary me-2">
+                                <i class="fas fa-save me-2"></i>Actualizar Postulación
+                            </button>
+                            <a href="{% url 'postulaciones:detalle' postulacion.id %}" class="btn btn-secondary">Cancelar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

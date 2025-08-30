@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - Panel de Administración{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="mb-4"><i class="fas fa-tachometer-alt"></i> Dashboard</h1>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-2">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h4>{{ total_usuarios }}</h4>
+                        <p class="mb-0">Usuarios</p>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-users fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="card bg-success text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h4>{{ total_ofertas }}</h4>
+                        <p class="mb-0">Ofertas</p>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-briefcase fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="card bg-info text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h4>{{ total_postulaciones }}</h4>
+                        <p class="mb-0">Postulaciones</p>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-hand-paper fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="card bg-warning text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h4>{{ total_contratos }}</h4>
+                        <p class="mb-0">Contratos</p>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-file-contract fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="card bg-danger text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h4>{{ total_reportes }}</h4>
+                        <p class="mb-0">Reportes</p>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-exclamation-triangle fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-chart-pie"></i> Estado de Reportes</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-4 text-center">
+                        <h3 class="text-danger">{{ reportes_abiertos }}</h3>
+                        <p>Abiertos</p>
+                    </div>
+                    <div class="col-4 text-center">
+                        <h3 class="text-warning">{{ reportes_proceso }}</h3>
+                        <p>En Proceso</p>
+                    </div>
+                    <div class="col-4 text-center">
+                        <h3 class="text-success">{{ reportes_cerrados }}</h3>
+                        <p>Cerrados</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-clock"></i> Últimos Reportes</h5>
+            </div>
+            <div class="card-body">
+                {% for reporte in ultimos_reportes %}
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <div>
+                        <strong>{{ reporte.titulo }}</strong><br>
+                        <small class="text-muted">{{ reporte.usuario.nombres }}</small>
+                    </div>
+                    <span class="badge bg-{% if reporte.prioridad == 'Alta' %}danger{% elif reporte.prioridad == 'Media' %}warning{% else %}secondary{% endif %}">
+                        {{ reporte.prioridad }}
+                    </span>
+                </div>
+                {% empty %}
+                <p class="text-muted">No hay reportes recientes</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

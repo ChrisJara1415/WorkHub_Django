@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contratos - Panel de Administración{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="fas fa-file-contract me-2"></i>Gestión de Contratos</h2>
+                <a href="{% url 'contratos:crear' %}" class="btn btn-primary">
+                    <i class="fas fa-plus me-2"></i>Nuevo Contrato
+                </a>
+            </div>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Empleado</th>
+                                    <th>Puesto</th>
+                                    <th>Salario</th>
+                                    <th>Estado</th>
+                                    <th>Fecha Inicio</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for contrato in contratos %}
+                                <tr>
+                                    <td>{{ contrato.id }}</td>
+                                    <td>{{ contrato.empleado.nombre }} {{ contrato.empleado.apellido }}</td>
+                                    <td>{{ contrato.puesto }}</td>
+                                    <td>${{ contrato.salario|floatformat:0 }}</td>
+                                    <td>
+                                        {% if contrato.estado == 'activo' %}
+                                            <span class="badge bg-success">Activo</span>
+                                        {% elif contrato.estado == 'terminado' %}
+                                            <span class="badge bg-danger">Terminado</span>
+                                        {% elif contrato.estado == 'suspendido' %}
+                                            <span class="badge bg-warning">Suspendido</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ contrato.fecha_inicio|date:"d/m/Y" }}</td>
+                                    <td>
+                                        <div class="btn-group" role="group">
+                                            <a href="{% url 'contratos:detalle' contrato.id %}" class="btn btn-sm btn-outline-info">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a href="{% url 'contratos:editar' contrato.id %}" class="btn btn-sm btn-outline-warning">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a href="{% url 'contratos:eliminar' contrato.id %}" class="btn btn-sm btn-outline-danger">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="7" class="text-center">No hay contratos registrados</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

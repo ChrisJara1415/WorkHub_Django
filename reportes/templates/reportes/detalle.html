@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ reporte.titulo }} - Panel de Administración{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="fas fa-chart-bar me-2"></i>Detalle del Reporte</h2>
+                <div>
+                    <a href="{% url 'reportes:editar' reporte.id %}" class="btn btn-warning me-2">
+                        <i class="fas fa-edit me-2"></i>Editar
+                    </a>
+                    <a href="{% url 'reportes:lista' %}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left me-2"></i>Volver
+                    </a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>{{ reporte.titulo }}</h3>
+                            <p class="text-muted mb-3">{{ reporte.descripcion|linebreaks }}</p>
+                            
+                            <h6>Información del Reporte</h6>
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td><strong>ID:</strong></td>
+                                    <td>{{ reporte.id }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Tipo:</strong></td>
+                                    <td><span class="badge bg-info">{{ reporte.get_tipo_display }}</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Estado:</strong></td>
+                                    <td>
+                                        {% if reporte.estado == 'borrador' %}
+                                            <span class="badge bg-secondary">Borrador</span>
+                                        {% elif reporte.estado == 'generando' %}
+                                            <span class="badge bg-warning">Generando</span>
+                                        {% elif reporte.estado == 'completado' %}
+                                            <span class="badge bg-success">Completado</span>
+                                        {% elif reporte.estado == 'error' %}
+                                            <span class="badge bg-danger">Error</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Creado por:</strong></td>
+                                    <td>{{ reporte.creado_por.nombre }} {{ reporte.creado_por.apellido }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Período:</strong></td>
+                                    <td>{{ reporte.fecha_inicio|date:"d/m/Y" }} - {{ reporte.fecha_fin|date:"d/m/Y" }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    {% if reporte.datos %}
+                    <div class="card mt-3">
+                        <div class="card-body">
+                            <h6>Datos del Reporte</h6>
+                            <pre class="bg-light p-3 rounded"><code>{{ reporte.datos }}</code></pre>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card bg-light">
+                        <div class="card-body">
+                            <h6>Fechas del Reporte</h6>
+                            <table class="table table-borderless table-sm">
+                                <tr>
+                                    <td><strong>Creado:</strong></td>
+                                    <td>{{ reporte.fecha_creacion|date:"d/m/Y H:i" }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Actualizado:</strong></td>
+                                    <td>{{ reporte.fecha_actualizacion|date:"d/m/Y H:i" }}</td>
+                                </tr>
+                                {% if reporte.fecha_generacion %}
+                                <tr>
+                                    <td><strong>Generado:</strong></td>
+                                    <td>{{ reporte.fecha_generacion|date:"d/m/Y H:i" }}</td>
+                                </tr>
+                                {% endif %}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

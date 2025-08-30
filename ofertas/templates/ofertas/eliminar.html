@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Eliminar {{ oferta.titulo }} - Panel de Administración{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="fas fa-briefcase me-2"></i>Eliminar Oferta</h2>
+                <a href="{% url 'ofertas:detalle' oferta.id %}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>Volver
+                </a>
+            </div>
+
+            <div class="card border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0"><i class="fas fa-exclamation-triangle me-2"></i>Confirmar Eliminación</h5>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning">
+                        <strong>¡Atención!</strong> Esta acción no se puede deshacer. Se eliminará permanentemente la oferta y todas las postulaciones asociadas.
+                    </div>
+                    
+                    <h5>¿Está seguro que desea eliminar la siguiente oferta?</h5>
+                    <div class="mt-3">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <h6>{{ oferta.titulo }}</h6>
+                                <p class="text-muted mb-2">{{ oferta.empresa }}</p>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <small><strong>Ubicación:</strong> {{ oferta.ubicacion }}</small><br>
+                                        <small><strong>Tipo:</strong> {{ oferta.get_tipo_empleo_display }}</small>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <small><strong>Salario:</strong> ${{ oferta.salario_min|floatformat:0 }} - ${{ oferta.salario_max|floatformat:0 }}</small><br>
+                                        <small><strong>Fecha Límite:</strong> {{ oferta.fecha_limite|date:"d/m/Y" }}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form method="post" class="mt-4">
+                        {% csrf_token %}
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-danger me-2">
+                                <i class="fas fa-trash me-2"></i>Sí, Eliminar Oferta
+                            </button>
+                            <a href="{% url 'ofertas:detalle' oferta.id %}" class="btn btn-secondary">Cancelar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Postulación #{{ postulacion.id }} - Panel de Administración{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="fas fa-file-alt me-2"></i>Detalle de la Postulación</h2>
+                <div>
+                    <a href="{% url 'postulaciones:editar' postulacion.id %}" class="btn btn-warning me-2">
+                        <i class="fas fa-edit me-2"></i>Editar
+                    </a>
+                    <a href="{% url 'postulaciones:lista' %}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left me-2"></i>Volver
+                    </a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5>Información de la Postulación</h5>
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td><strong>ID:</strong></td>
+                                    <td>{{ postulacion.id }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Usuario:</strong></td>
+                                    <td>{{ postulacion.usuario.nombre }} {{ postulacion.usuario.apellido }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Email:</strong></td>
+                                    <td>{{ postulacion.usuario.email }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Oferta:</strong></td>
+                                    <td>{{ postulacion.oferta.titulo }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Empresa:</strong></td>
+                                    <td>{{ postulacion.oferta.empresa }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Estado:</strong></td>
+                                    <td>
+                                        {% if postulacion.estado == 'pendiente' %}
+                                            <span class="badge bg-warning">Pendiente</span>
+                                        {% elif postulacion.estado == 'revisando' %}
+                                            <span class="badge bg-info">Revisando</span>
+                                        {% elif postulacion.estado == 'aceptada' %}
+                                            <span class="badge bg-success">Aceptada</span>
+                                        {% elif postulacion.estado == 'rechazada' %}
+                                            <span class="badge bg-danger">Rechazada</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Salario Esperado:</strong></td>
+                                    <td>${{ postulacion.salario_esperado|floatformat:0|default:"No especificado" }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    {% if postulacion.carta_presentacion %}
+                    <div class="card mt-3">
+                        <div class="card-body">
+                            <h6>Carta de Presentación</h6>
+                            <p class="text-muted">{{ postulacion.carta_presentacion|linebreaks }}</p>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if postulacion.notas %}
+                    <div class="card mt-3">
+                        <div class="card-body">
+                            <h6>Notas Adicionales</h6>
+                            <p class="text-muted">{{ postulacion.notas|linebreaks }}</p>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card bg-light">
+                        <div class="card-body">
+                            <h6>Fechas Importantes</h6>
+                            <table class="table table-borderless table-sm">
+                                <tr>
+                                    <td><strong>Postulación:</strong></td>
+                                    <td>{{ postulacion.fecha_postulacion|date:"d/m/Y H:i" }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Última Actualización:</strong></td>
+                                    <td>{{ postulacion.fecha_actualizacion|date:"d/m/Y H:i" }}</td>
+                                </tr>
+                                {% if postulacion.fecha_respuesta %}
+                                <tr>
+                                    <td><strong>Fecha Respuesta:</strong></td>
+                                    <td>{{ postulacion.fecha_respuesta|date:"d/m/Y H:i" }}</td>
+                                </tr>
+                                {% endif %}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
