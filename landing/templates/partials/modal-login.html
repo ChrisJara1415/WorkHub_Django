@@ -1,7 +1,7 @@
 <dialog id="modalLogin" closedby="any">
-    <form class="form">
-
-        <button onclick="closeModal(event)" class="close">✖</button>
+    <form class="form" method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <button onclick="closeModal(event)" class="close" type="button">✖</button>
 
         <div class="flex-column">
             <label for="email">Email</label>
@@ -14,11 +14,11 @@
                     </path>
                 </g>
             </svg>
-            <input id="email" type="email" class="input" placeholder="Ingresa tu correo">
+            <input id="email" name="username" type="email" class="input" placeholder="Ingresa tu correo" required>
         </div>
 
         <div class="flex-column">
-            <label for="password">Contraseña </label>
+            <label for="password">Contraseña</label>
         </div>
         <div class="inputForm">
             <svg height="20" viewBox="-64 0 512 512" width="20" xmlns="http://www.w3.org/2000/svg">
@@ -29,7 +29,7 @@
                     d="m304 224c-8.832031 0-16-7.167969-16-16v-80c0-52.929688-43.070312-96-96-96s-96 43.070312-96 96v80c0 8.832031-7.167969 16-16 16s-16-7.167969-16-16v-80c0-70.59375 57.40625-128 128-128s128 57.40625 128 128v80c0 8.832031-7.167969 16-16 16zm0 0">
                 </path>
             </svg>
-            <input id="password" type="password" class="input" placeholder="Ingresa tu contraseña">
+            <input id="password" name="password" type="password" class="input" placeholder="Ingresa tu contraseña" required>
             <svg onclick="togglePassword()" class="me-2" viewBox="0 0 576 512" height="1em"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -46,7 +46,7 @@
             <a class="text-decoration-none" href="#"><span class="span">Olvidaste tu contraseña?</span></a>
         </div>
 
-        <button onclick="validateLogin()" id="btn-log-in" class="button-submit">Iniciar Sesión</button>
+        <button id="btn-log-in" class="button-submit" type="submit">Iniciar Sesión</button>
 
         <p class="p">No tienes una cuenta? <a onclick="changeModal()" id="change-modal"
                 class="text-decoration-none"><span class="span">Registrate</span></a></p>

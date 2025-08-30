@@ -14,14 +14,13 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/landingPage.css' %}">
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     {% include "partials/header.html" %}
     {% include "partials/modal-login.html" %}
     {% include "partials/modal-signup.html" %}
-    <main>
+    <main class="flex-grow-1">
         {% block content %}{% endblock %}
     </main>
-
     {% include "partials/footer.html" %}
 </body>
 
